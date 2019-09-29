@@ -12,19 +12,21 @@ public class Main {
         PriorityQueue pairs = new PriorityQueue();
         pairs.push(0, 3);
         pairs.push(2, 1);
-        test.printHeap();
+        pairs.printHeap();
         System.out.println("Map");
-        test.printMap();
-        System.out.println("Before: ");
-        for (int j = 0; j < priorityQueue.heap.size(); j++) {
-            System.out.println("index: " + j + ", element: " + priorityQueue.heap.get(j).getElem() + ", priority: "
-                    + priorityQueue.heap.get(j).getPriority());
-        }
-        System.out.println(priorityQueue.isEmpty());
-        System.out.println("After: ");
-        for (int i = 0; i < priorityQueue.heap.size(); i++) {
-            System.out.println("index: " + i + ", element: " + priorityQueue.heap.get(i).getElem() + ", priority: "
-                    + priorityQueue.heap.get(i).getPriority());
-        }
+        pairs.printMap();
+        // System.out.println("Before: ");
+        // for (int j = 0; j < priorityQueue.heap.size(); j++) {
+        // System.out.println("index: " + j + ", element: " +
+        // priorityQueue.heap.get(j).getElem() + ", priority: "
+        // + priorityQueue.heap.get(j).getPriority());
+        // }
+        // System.out.println(priorityQueue.isEmpty());
+        // System.out.println("After: ");
+        // for (int i = 0; i < priorityQueue.heap.size(); i++) {
+        // System.out.println("index: " + i + ", element: " +
+        // priorityQueue.heap.get(i).getElem() + ", priority: "
+        // + priorityQueue.heap.get(i).getPriority());
+        // }
     }
 }
