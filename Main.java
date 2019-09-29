@@ -26,9 +26,16 @@ public class Main {
         pairs.add(p1);
         pairs.add(p2);
         pairs.add(p3);
-        System.out.println("Called the main  method!");
         PriorityQueue priorityQueue = new PriorityQueue();
         priorityQueue.heap = pairs;
-        priorityQueue.pop();
+        System.out.println("Before: ");
+        for(int j = 0; j < priorityQueue.heap.size();j++){
+            System.out.println("index: " + j + ", element: " + priorityQueue.heap.get(j).getElem() + ", priority: " + priorityQueue.heap.get(j).getPriority());
+        }
+        System.out.println(priorityQueue.isEmpty());
+        System.out.println("After: ");
+        for(int i = 0; i < priorityQueue.heap.size();i++){
+            System.out.println("index: " + i + ", element: " + priorityQueue.heap.get(i).getElem() + ", priority: " + priorityQueue.heap.get(i).getPriority());
+        }
     }
 }

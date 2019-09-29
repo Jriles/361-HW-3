@@ -131,7 +131,11 @@ public class PriorityQueue {
 	 */
 	public boolean isEmpty() {
 		// TODO: Fill in
-		return true;
+		if(heap.size() == 0) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	/**
@@ -149,6 +153,9 @@ public class PriorityQueue {
 	 */
 	public void clear() {
 		// TODO: Fill in
+		heap.clear();
+		location.clear();
+		System.out.println("finished clear");
 	}
 
 	/**
