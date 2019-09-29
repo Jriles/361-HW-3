@@ -76,7 +76,18 @@ public class PriorityQueue {
 	 */
 	public int topPriority() {
 		// TODO: Fill in
-		return heap.get(heap.size() - 1).getPriority();
+		if(isEmpty()){
+			return -1;
+		}else{
+			int highestCurrentPriority = -1;
+			for(int i =0; i < heap.size();i++){
+				int thisPriority = heap.get(i).getPriority();
+				if(thisPriority > highestCurrentPriority){
+					highestCurrentPriority = thisPriority;
+				}
+			}
+			return highestCurrentPriority;
+		}
 	}
 
 	/**
@@ -91,7 +102,18 @@ public class PriorityQueue {
 	 */
 	public int topElement() {
 		// TODO: Fill in
-		return heap.get(heap.size() - 1).getElem();
+		if(isEmpty()){
+			return -1;
+		}else{
+			int highestCurrentElement = -1;
+			for(int i =0; i < heap.size();i++){
+				int thisElement = heap.get(i).getElem();
+				if(thisElement > highestCurrentElement){
+					highestCurrentElement = thisElement;
+				}
+			}
+			return highestCurrentElement;
+		}
 	}
 
 	/**
@@ -157,7 +179,6 @@ public class PriorityQueue {
 		// TODO: Fill in
 		heap.clear();
 		location.clear();
-		System.out.println("finished clear");
 	}
 
 	/**

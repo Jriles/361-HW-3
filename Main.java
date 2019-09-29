@@ -11,10 +11,11 @@ public class Main {
         pairs.push(2, 1);
         pairs.push(3, 4);
         pairs.push(9, 1);
-        pairs.percolateUp(3);
+        //pairs.percolateUp(3);
         pairs.printHeap();
         System.out.println("Map");
         pairs.printMap();
+        System.out.println(pairs.topElement());
         // System.out.println("Before: ");
         // for (int j = 0; j < priorityQueue.heap.size(); j++) {
         // System.out.println("index: " + j + ", element: " +
