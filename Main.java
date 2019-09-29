@@ -5,14 +5,7 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        // Pair<Integer, Integer> p1 = Pair.createPair(0, 3);
-        // Pair<Integer, Integer> p2 = Pair.createPair(1, 2);
-        // Pair<Integer, Integer> p3 = Pair.createPair(3, 1);
 
-        // List<Pair<Integer, Integer>> pairs = new ArrayList<Pair<Integer, Integer>>();
-        // pairs.add(p1);
-        // pairs.add(p2);
-        // pairs.add(p3);
         // System.out.print("[");
         // for (Pair p : pairs) {
         // System.out.print(p.toString());
@@ -25,10 +18,17 @@ public class Main {
         // int elem = (int) p.getElem();
         // location.put(priority, elem);
         // }
+        Pair<Integer, Integer> p1 = Pair.createPair(0, 3);
+        Pair<Integer, Integer> p2 = Pair.createPair(1, 2);
+        Pair<Integer, Integer> p3 = Pair.createPair(3, 1);
 
-        // System.out.println(location.get(0));
-        PriorityQueue test = new PriorityQueue();
-        test.push(0, 3);
-        test.printHeap();
+        List<Pair<Integer, Integer>> pairs = new ArrayList<Pair<Integer, Integer>>();
+        pairs.add(p1);
+        pairs.add(p2);
+        pairs.add(p3);
+        System.out.println("Called the main  method!");
+        PriorityQueue priorityQueue = new PriorityQueue();
+        priorityQueue.heap = pairs;
+        priorityQueue.pop();
     }
 }

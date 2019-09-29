@@ -54,6 +54,12 @@ public class PriorityQueue {
 	 */
 	public void pop() {
 		// TODO: Fill in
+		//need to remove
+		//the element with the greatest priority should be the one at the end of the heap[array].
+		//remove from heap
+		heap.remove(heap.size() - 1);
+		//remove from map
+		location.remove(heap.get(heap.size()-1));
 	}
 
 	/**
@@ -68,6 +74,7 @@ public class PriorityQueue {
 	 */
 	public int topPriority() {
 		// TODO: Fill in
+		return heap.get(heap.size() - 1).getPriority();
 	}
 
 	/**
@@ -82,6 +89,7 @@ public class PriorityQueue {
 	 */
 	public int topElement() {
 		// TODO: Fill in
+		return heap.get(heap.size() - 1).getElem();
 	}
 
 	/**
@@ -113,6 +121,7 @@ public class PriorityQueue {
 	 */
 	public int getPriority(int element) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/**
@@ -122,6 +131,7 @@ public class PriorityQueue {
 	 */
 	public boolean isEmpty() {
 		// TODO: Fill in
+		return true;
 	}
 
 	/**
@@ -131,6 +141,7 @@ public class PriorityQueue {
 	 */
 	public boolean isPresent(int element) {
 		// TODO: Fill in
+		return true;
 	}
 
 	/**
@@ -147,6 +158,7 @@ public class PriorityQueue {
 	 */
 	public int size() {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/*********************************************************
@@ -161,6 +173,7 @@ public class PriorityQueue {
 	 */
 	private int pushDown(int start_index) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/**
@@ -171,6 +184,7 @@ public class PriorityQueue {
 	 */
 	private int percolateUp(int start_index) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/**
@@ -192,6 +206,7 @@ public class PriorityQueue {
 	 */
 	private int left(int parent) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/**
@@ -202,6 +217,7 @@ public class PriorityQueue {
 	 */
 	private int right(int parent) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/**
@@ -213,17 +229,18 @@ public class PriorityQueue {
 
 	private int parent(int child) {
 		// TODO: Fill in
+		return 0;
 	}
 
 	/*********************************************************
 	 * These are optional private methods that may be useful
-	 *********************************************************/
+	 *********************************************************
 
-	/**
+	**
 	 * Push down the root element
-	 * 
+	 *
 	 * @return the index in the list where the element is finally stored
-	 */
+	 *
 	private int pushDownRoot() {
 		// TODO: A one-line function that calls pushDown()
 	}
@@ -231,36 +248,36 @@ public class PriorityQueue {
 	/**
 	 * Percolate up the last leaf in the heap, i.e. the most recently added element
 	 * which is stored in the last slot in the list
-	 * 
+	 *
 	 * @return the index in the list where the element is finally stored
-	 */
+	 *
 	private int percolateUpLeaf() {
 		// TODO: A one-line function that calls percolateUp()
 	}
 
 	/**
 	 * Returns true if element is a leaf in the heap
-	 * 
+	 *
 	 * @param i index of element in heap
 	 * @return true if element is a leaf
-	 */
+	 *
 	private boolean isLeaf(int i) {
 		// TODO: Fill in
 	}
 
 	/**
 	 * Returns true if element has two children in the heap
-	 * 
+	 *
 	 * @param i index of element in the heap
 	 * @return true if element in heap has two children
-	 */
+	 *
 	private boolean hasTwoChildren(int i) {
 		// TODO: Fill in
 	}
 
 	/**
 	 * Print the underlying list representation
-	 */
+	 *
 	public void printHeap() {
 		System.out.print("[");
 		for (Pair p : heap) {
@@ -272,9 +289,9 @@ public class PriorityQueue {
 
 	/**
 	 * Print the entries in the location map
-	 */
+	 *
 	private void printMap() {
 		// TODO: Fill in
 	}
-
+	*/
 }
