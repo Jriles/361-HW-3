@@ -191,7 +191,7 @@ public class PriorityQueue {
 	 * @param start_index the index of the element to be percolated up
 	 * @return the index in the list where the element is finally stored
 	 */
-	public int percolateUp(int start_index) {
+	private int percolateUp(int start_index) {
 		Pair pairToPerc = heap.get(start_index);
 		int pairToPercPriority = (int) pairToPerc.getPriority();
 		int currentIndex = start_index;

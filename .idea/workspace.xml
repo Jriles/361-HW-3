@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee4ad865-5dc0-4298-a499-98c7eb51aec2" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/Pair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PriorityQueue.class" beforeDir="false" afterPath="$PROJECT_DIR$/PriorityQueue.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PriorityQueue.java" beforeDir="false" afterPath="$PROJECT_DIR$/PriorityQueue.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PriorityQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-437">
-              <caret line="207" column="59" lean-forward="true" selection-start-line="207" selection-start-column="59" selection-end-line="207" selection-end-column="59" />
+            <state relative-caret-position="413">
+              <caret line="200" column="32" lean-forward="true" selection-start-line="200" selection-start-column="32" selection-end-line="200" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5926#5927#0" expanded="true" />
@@ -147,7 +141,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569795784384" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1569795923713" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -216,12 +210,12 @@
       <option name="presentableId" value="Default" />
       <updated>1569456198954</updated>
       <workItem from="1569697963989" duration="930000" />
-      <workItem from="1569699005011" duration="16928000" />
+      <workItem from="1569699005011" duration="17045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17858000" />
+    <option name="totallyTimeSpent" value="17975000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1653" height="896" extended-state="6" />
@@ -360,8 +354,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PriorityQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-437">
-          <caret line="207" column="59" lean-forward="true" selection-start-line="207" selection-start-column="59" selection-end-line="207" selection-end-column="59" />
+        <state relative-caret-position="413">
+          <caret line="200" column="32" lean-forward="true" selection-start-line="200" selection-start-column="32" selection-end-line="200" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5926#5927#0" expanded="true" />
