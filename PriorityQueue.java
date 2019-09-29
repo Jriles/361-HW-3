@@ -285,4 +285,17 @@ public class PriorityQueue {
 	 *
 	 *         private void printMap() { // TODO: Fill in }
 	 */
+	public void printHeap() {
+		System.out.print("[");
+		for (Pair p : heap) {
+			System.out.print(p.toString());
+			System.out.print(",");
+		}
+		System.out.print("]\n");
+	}
+
+	public void printMap() {
+		location.forEach((key, value) -> System.out.println("Priority: " + key + " " + " Element: " + value));
+
+	}
 }
