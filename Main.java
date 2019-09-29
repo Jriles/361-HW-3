@@ -9,6 +9,9 @@ public class Main {
         PriorityQueue pairs = new PriorityQueue();
         pairs.push(0, 3);
         pairs.push(2, 1);
+        pairs.push(3, 4);
+        pairs.push(9, 1);
+        pairs.percolateUp(3);
         pairs.printHeap();
         System.out.println("Map");
         pairs.printMap();

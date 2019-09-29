@@ -191,9 +191,28 @@ public class PriorityQueue {
 	 * @param start_index the index of the element to be percolated up
 	 * @return the index in the list where the element is finally stored
 	 */
-	private int percolateUp(int start_index) {
-		// TODO: Fill in
-		return 0
+	public int percolateUp(int start_index) {
+		Pair pairToPerc = heap.get(start_index);
+		int pairToPercPriority = (int) pairToPerc.getPriority();
+		int currentIndex = start_index;
+		boolean swapped = false;
+		do {
+			//check this elements parent
+			//ask if out current pair is less than the priority of the parent
+			//if so our new indes becomes our parent index.
+			int parentIndex = parent(currentIndex);
+			Pair currentParent = heap.get(parentIndex);
+			int currentParentPriority = (int) currentParent.getPriority();
+			//want to swap this element with its parent if it has a lower priority
+			System.out.println("pair to perc priority: " + pairToPercPriority + " parentPriortiy: " + currentParentPriority);
+			if(pairToPercPriority < currentParentPriority){
+				currentIndex = parentIndex;
+				swapped = true;
+			}else{
+				swapped = false;
+			}
+		}while(swapped);
+		return currentIndex;
 	}
 
 	/**
@@ -205,6 +224,20 @@ public class PriorityQueue {
 	 */
 	private void swap(int i, int j) {
 		// TODO: Fill in
+		//swap the heap
+		Pair firstPair = heap.get(i);
+		Pair secondPair = heap.get(j);
+		Pair middleMan = firstPair;
+		firstPair = secondPair;
+		secondPair = middleMan;
+		//swap the hashmap
+		//this is done by just switching the values and leaving the pairs where they are in the hashmap
+		int firstElement = heap.get(i).getElem();
+		int firstPriority = heap.get(i).getPriority();
+		int secondElement = heap.get(j).getElem();
+		int secondPriority = heap.get(j).getPriority();
+		location.put(firstPriority, secondElement);
+		location.put(secondPriority, firstElement);
 	}
 
 	/**
@@ -237,8 +270,7 @@ public class PriorityQueue {
 	 */
 
 	private int parent(int child) {
-		// TODO: Fill in
-		return 0;
+		return (child - 1) / 2;
 	}
 
 	/*********************************************************
