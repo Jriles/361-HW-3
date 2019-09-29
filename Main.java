@@ -9,6 +9,7 @@ public class Main {
         PriorityQueue pairs = new PriorityQueue();
         pairs.push(0, 3);
         pairs.push(2, 1);
+
         pairs.printHeap();
         System.out.println("Map");
         pairs.printMap();

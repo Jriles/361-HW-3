@@ -39,9 +39,14 @@ public class PriorityQueue {
 	 * 
 	 */
 	public void push(int priority, int element) {
-		Pair<Integer, Integer> p = Pair.createPair(priority, element);
-		heap.add(p);
-		location.put(priority, element);
+		if (location.containsValue(element)) {
+			throw new AssertionError();
+		} else {
+			Pair<Integer, Integer> p = Pair.createPair(priority, element);
+			heap.add(p);
+			location.put(element, heap.indexOf(p));
+		}
+
 	}
 
 	/**
@@ -295,7 +300,7 @@ public class PriorityQueue {
 	}
 
 	public void printMap() {
-		location.forEach((key, value) -> System.out.println("Priority: " + key + " " + " Element: " + value));
+		location.forEach((key, value) -> System.out.println("Element: " + key + " " + " Index: " + value));
 
 	}
 }
