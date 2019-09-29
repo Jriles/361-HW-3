@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-
         Pair<Integer, Integer> p1 = Pair.createPair(0, 3);
         Pair<Integer, Integer> p2 = Pair.createPair(1, 2);
         Pair<Integer, Integer> p3 = Pair.createPair(3, 1);
