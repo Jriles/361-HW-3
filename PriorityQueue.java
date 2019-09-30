@@ -55,13 +55,12 @@ public class PriorityQueue {
 	 */
 	public void pop() {
 		// TODO: Fill in
-		// need to remove
-		// the element with the greatest priority should be the one at the end of the
-		// heap[array].
-		// remove from heap
-		heap.remove(heap.size() - 1);
-		// remove from map
-		location.remove(heap.get(heap.size() - 1));
+		int topPriority = topPriority();
+		int associatedElement = location.get(topPriority);
+		System.out.println("top priority: " + topPriority + " associated element: " + associatedElement);
+		location.remove(topPriority);
+		Pair<Integer, Integer> p = Pair.createPair(topPriority, associatedElement);
+		System.out.println(heap.remove(p));
 	}
 
 	/**
@@ -130,6 +129,7 @@ public class PriorityQueue {
 	 */
 	public void changePriority(int newpriority, int element) {
 		// TODO: Fill in
+
 	}
 
 	/**
