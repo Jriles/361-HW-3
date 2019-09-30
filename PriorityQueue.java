@@ -39,7 +39,7 @@ public class PriorityQueue {
 	 * 
 	 */
 	public void push(int priority, int element) {
-		if (location.containsValue(element)) {
+		if (location.containsKey(element)) {
 			throw new AssertionError();
 		} else {
 			Pair<Integer, Integer> p = Pair.createPair(priority, element);
@@ -248,30 +248,32 @@ public class PriorityQueue {
 	 * @param i The index of the element to be swapped
 	 * @param j The index of the element to be swapped
 	 */
-	private void swap(int i, int j) {
+	public void swap(int i, int j) {
 		// TODO: Fill in
 		// swap the heap
+		Pair temp = heap.get(i);
 		Pair firstPair = heap.get(i);
 		Pair secondPair = heap.get(j);
-		Pair middleMan = firstPair;
 		firstPair = secondPair;
-		secondPair = middleMan;
+		secondPair = temp;
+		heap.set(j, secondPair);
+		heap.set(i, firstPair);
 		// swap the hashmap
 		// this is done by just switching the values and leaving the pairs where they
 		// are in the hashmap
-		int firstElement = heap.get(i).getElem();
-		int firstPriority = heap.get(i).getPriority();
-		int secondElement = heap.get(j).getElem();
-		int secondPriority = heap.get(j).getPriority();
-		location.put(firstPriority, secondElement);
-		location.put(secondPriority, firstElement);
+
+		location.replace((int) secondPair.getElem(), j);
+		location.replace((int) firstPair.getElem(), i);
+
 	}
 
 	/**
 	 * Computes the index of the element's left child
 	 * 
-	 * @param parent index of element in list
-	 * @return index of element's left child in list
+	 * 
+	 * * @param parent index of element in list
+	 * 
+	 * * @return index of element's left child in list
 	 */
 	private int left(int parent) {
 		return (parent * 2) + 1;
@@ -346,7 +348,7 @@ public class PriorityQueue {
 	}
 
 	/**
-	 * rint the underlying list representation
+	 * print the underlying list representation
 	 */
 	public void printHeap() {
 		System.out.print("[");
@@ -361,7 +363,7 @@ public class PriorityQueue {
 	 * Print the entries in the location map
 	 */
 	public void printMap() {
-		location.forEach((key, value) -> System.out.println("Priority: " + key + " " + " Element: " + value));
+		location.forEach((key, value) -> System.out.println("Element: " + key + " " + " Index: " + value));
 
 	}
 }
