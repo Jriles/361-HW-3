@@ -192,8 +192,7 @@ public class PriorityQueue {
 	 * @return number of elements in the priority queue
 	 */
 	public int size() {
-		// TODO: Fill in
-		return 0;
+		return heap.size();
 	}
 
 	/*********************************************************
@@ -330,7 +329,10 @@ public class PriorityQueue {
 	 * @return true if element is a leaf
 	 */
 	private boolean isLeaf(int i) {
-		// TODO: Fill in
+		if (i >= (size / 2) && i <= size) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
