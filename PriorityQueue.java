@@ -7,8 +7,8 @@ import java.util.Map;
  * A priority queue class implemented using a min heap. Priorities cannot be
  * negative.
  * 
- * @author Your names
- * @version Date
+ * @author Jiman Kim and Jack Riley
+ * @version 20190930
  *
  */
 public class PriorityQueue {
@@ -275,7 +275,6 @@ public class PriorityQueue {
 		// swap the hashmap
 		// this is done by just switching the values and leaving the pairs where they
 		// are in the hashmap
-
 		location.replace((int) secondPair.getElem(), j);
 		location.replace((int) firstPair.getElem(), i);
 
