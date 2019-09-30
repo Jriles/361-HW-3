@@ -9,10 +9,17 @@ public class Main {
         PriorityQueue pairs = new PriorityQueue();
         pairs.push(0, 3);
         pairs.push(2, 1);
+<<<<<<< HEAD
 
+=======
+        pairs.push(3, 4);
+        pairs.push(9, 1);
+        //pairs.percolateUp(3);
+>>>>>>> c294145013c905da0eedf79e346c362743eec34a
         pairs.printHeap();
         System.out.println("Map");
         pairs.printMap();
+        System.out.println(pairs.topElement());
         // System.out.println("Before: ");
         // for (int j = 0; j < priorityQueue.heap.size(); j++) {
         // System.out.println("index: " + j + ", element: " +

@@ -27,6 +27,14 @@ public class Pair<P, E> {
 		return element;
 	}
 
+	public void setPriority(P priorityParam){
+		priority = priorityParam;
+	}
+
+	public void setElement(E elementParam){
+		element = elementParam;
+	}
+
 	@Override
 	public String toString() {
 		return "(" + priority + "," + element + ")";
