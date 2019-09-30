@@ -153,8 +153,11 @@ public class PriorityQueue {
 	 *         </ul>
 	 */
 	public int getPriority(int element) {
-		// TODO: Fill in
-		return 0;
+		if (location.containsKey(element)) {
+			return (int) heap.get((int) location.get(element)).getPriority();
+		}
+		throw new AssertionError();
+
 	}
 
 	/**
