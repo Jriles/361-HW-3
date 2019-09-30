@@ -12,7 +12,7 @@ public class Main {
         pairs.push(100, 1);
         pairs.push(47, 2);
 
-        System.out.println(pairs.getPriority(9));
+        System.out.println(pairs.isPresent(3));
         // System.out.println(pairs.isLeaf(0));
         System.out.println("SIZE: " + pairs.size());
         System.out.println("Top Element: " + pairs.topElement());

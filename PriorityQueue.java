@@ -41,7 +41,7 @@ public class PriorityQueue {
 	 * 
 	 */
 	public void push(int priority, int element) {
-		if (location.containsKey(element)) {
+		if (isPresent(element)) {
 			throw new AssertionError();
 		} else {
 			Pair<Integer, Integer> p = Pair.createPair(priority, element);
@@ -138,7 +138,7 @@ public class PriorityQueue {
 	 *                    </ul>
 	 */
 	public void changePriority(int newpriority, int element) {
-		// TODO: Fill in
+		// NEed push down to implement
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class PriorityQueue {
 	 *         </ul>
 	 */
 	public int getPriority(int element) {
-		if (location.containsKey(element)) {
+		if (isPresent(element)) {
 			return (int) heap.get((int) location.get(element)).getPriority();
 		}
 		throw new AssertionError();
@@ -180,8 +180,7 @@ public class PriorityQueue {
 	 * @return true if the element exists, false otherwise
 	 */
 	public boolean isPresent(int element) {
-		// TODO: Fill in
-		return true;
+		return location.containsKey(element);
 	}
 
 	/**
@@ -211,9 +210,6 @@ public class PriorityQueue {
 		int parent = (int) heap.get(root).getPriority();
 		int left = (int) heap.get(left(root)).getPriority();
 		int right = (int) heap.get(right(root)).getPriority();
-		System.out.println(parent);
-		System.out.println(left);
-		System.out.println(right);
 		if (!isLeaf(root)) {
 			if (parent > right || parent > left) {
 				if (right < left) {
