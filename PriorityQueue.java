@@ -15,6 +15,7 @@ public class PriorityQueue {
 
 	protected Map<Integer, Integer> location;
 	protected List<Pair<Integer, Integer>> heap;
+	protected int size;
 
 	/**
 	 * Constructs an empty priority queue
@@ -22,6 +23,7 @@ public class PriorityQueue {
 	public PriorityQueue() {
 		heap = new ArrayList<Pair<Integer, Integer>>();
 		location = new HashMap<>();
+		this.size = heap.size();
 	}
 
 	/**
@@ -45,6 +47,8 @@ public class PriorityQueue {
 			Pair<Integer, Integer> p = Pair.createPair(priority, element);
 			heap.add(p);
 			location.put(element, heap.indexOf(p));
+			percolateUp(heap.indexOf(p));
+
 		}
 
 	}
@@ -192,12 +196,33 @@ public class PriorityQueue {
 	 * @return number of elements in the priority queue
 	 */
 	public int size() {
-		return heap.size();
+		size = heap.size();
+		return size;
 	}
 
 	/*********************************************************
 	 * Private helper methods
 	 *********************************************************/
+
+	public void heapify(int root) {
+		int parent = (int) heap.get(root).getPriority();
+		int left = (int) heap.get(left(root)).getPriority();
+		int right = (int) heap.get(right(root)).getPriority();
+		System.out.println(parent);
+		System.out.println(left);
+		System.out.println(right);
+		if (!isLeaf(root)) {
+			if (parent > right || parent > left) {
+				if (right < left) {
+					swap(root, right(root));
+					heapify(right(root));
+				} else {
+					swap(root, left(root));
+					heapify(left(root));
+				}
+			}
+		}
+	}
 
 	/**
 	 * Push down the element at the given position in the heap
@@ -217,28 +242,17 @@ public class PriorityQueue {
 	 * @return the index in the list where the element is finally stored
 	 */
 	private int percolateUp(int start_index) {
-		Pair pairToPerc = heap.get(start_index);
-		int pairToPercPriority = (int) pairToPerc.getPriority();
-		int currentIndex = start_index;
-		boolean swapped = false;
-		do {
-			// check this elements parent
-			// ask if out current pair is less than the priority of the parent
-			// if so our new indes becomes our parent index.
-			int parentIndex = parent(currentIndex);
-			Pair currentParent = heap.get(parentIndex);
-			int currentParentPriority = (int) currentParent.getPriority();
-			// want to swap this element with its parent if it has a lower priority
-			System.out.println(
-					"pair to perc priority: " + pairToPercPriority + " parentPriortiy: " + currentParentPriority);
-			if (pairToPercPriority < currentParentPriority) {
-				currentIndex = parentIndex;
-				swapped = true;
+		while (isLeaf(start_index)) {
+			int currentPriority = (int) heap.get(start_index).getPriority();
+			int parent = (int) heap.get(parent(start_index)).getPriority();
+			if (currentPriority < parent) {
+				swap(start_index, parent(start_index));
+				start_index = parent(start_index);
 			} else {
-				swapped = false;
+				return start_index;
 			}
-		} while (swapped);
-		return currentIndex;
+		}
+		return start_index;
 	}
 
 	/**
@@ -248,7 +262,7 @@ public class PriorityQueue {
 	 * @param i The index of the element to be swapped
 	 * @param j The index of the element to be swapped
 	 */
-	public void swap(int i, int j) {
+	private void swap(int i, int j) {
 		// TODO: Fill in
 		// swap the heap
 		Pair temp = heap.get(i);
@@ -331,7 +345,7 @@ public class PriorityQueue {
 	 * @return true if element is a leaf
 	 */
 	private boolean isLeaf(int i) {
-		if (i >= (size / 2) && i <= size) {
+		if (i >= (size() / 2) && i <= size()) {
 			return true;
 		}
 		return false;
