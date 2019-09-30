@@ -302,47 +302,49 @@ public class PriorityQueue {
 
 	/*********************************************************
 	 * These are optional private methods that may be useful
-	 *********************************************************
-	 **
-	 * 
+	 *********************************************************/
+
+	/**
 	 * Push down the root element
-	 *
-	 * @return the index in the list where the element is finally stored
-	 *
-	 *         private int pushDownRoot() { // TODO: A one-line function that calls
-	 *         pushDown() }
 	 * 
-	 *         /** Percolate up the last leaf in the heap, i.e. the most recently
-	 *         added element which is stored in the last slot in the list
-	 *
 	 * @return the index in the list where the element is finally stored
-	 *
-	 *         private int percolateUpLeaf() { // TODO: A one-line function that
-	 *         calls percolateUp() }
+	 */
+	private int pushDownRoot() {
+		// TODO: A one-line function that calls pushDown()
+	}
+
+	/**
+	 * Percolate up the last leaf in the heap, i.e. the most recently added element
+	 * which is stored in the last slot in the list
 	 * 
-	 *         /** Returns true if element is a leaf in the heap
-	 *
+	 * @return the index in the list where the element is finally stored
+	 */
+	private int percolateUpLeaf() {
+		// TODO: A one-line function that calls percolateUp()
+	}
+
+	/**
+	 * Returns true if element is a leaf in the heap
+	 * 
 	 * @param i index of element in heap
 	 * @return true if element is a leaf
-	 *
-	 *         private boolean isLeaf(int i) { // TODO: Fill in }
+	 */
+	private boolean isLeaf(int i) {
+		// TODO: Fill in
+	}
+
+	/**
+	 * Returns true if element has two children in the heap
 	 * 
-	 *         /** Returns true if element has two children in the heap
-	 *
 	 * @param i index of element in the heap
 	 * @return true if element in heap has two children
-	 *
-	 *         private boolean hasTwoChildren(int i) { // TODO: Fill in }
-	 * 
-	 *         /** Print the underlying list representation
-	 *
-	 *         public void printHeap() { System.out.print("["); for (Pair p : heap)
-	 *         { System.out.print(p.toString()); System.out.print(","); }
-	 *         System.out.print("]\n"); }
-	 * 
-	 *         /** Print the entries in the location map
-	 *
-	 *         private void printMap() { // TODO: Fill in }
+	 */
+	private boolean hasTwoChildren(int i) {
+		// TODO: Fill in
+	}
+
+	/**
+	 * rint the underlying list representation
 	 */
 	public void printHeap() {
 		System.out.print("[");
@@ -353,8 +355,11 @@ public class PriorityQueue {
 		System.out.print("]\n");
 	}
 
+	/**
+	 * Print the entries in the location map
+	 */
 	public void printMap() {
-		location.forEach((key, value) -> System.out.println("Element: " + key + " " + " Index: " + value));
+		location.forEach((key, value) -> System.out.println("Priority: " + key + " " + " Element: " + value));
 
 	}
 }
