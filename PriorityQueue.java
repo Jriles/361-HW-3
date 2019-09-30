@@ -81,13 +81,13 @@ public class PriorityQueue {
 	 */
 	public int topPriority() {
 		// TODO: Fill in
-		if(isEmpty()){
+		if (isEmpty()) {
 			return -1;
-		}else{
+		} else {
 			int highestCurrentPriority = -1;
-			for(int i =0; i < heap.size();i++){
+			for (int i = 0; i < heap.size(); i++) {
 				int thisPriority = heap.get(i).getPriority();
-				if(thisPriority > highestCurrentPriority){
+				if (thisPriority > highestCurrentPriority) {
 					highestCurrentPriority = thisPriority;
 				}
 			}
@@ -107,13 +107,13 @@ public class PriorityQueue {
 	 */
 	public int topElement() {
 		// TODO: Fill in
-		if(isEmpty()){
+		if (isEmpty()) {
 			return -1;
-		}else{
+		} else {
 			int highestCurrentElement = -1;
-			for(int i =0; i < heap.size();i++){
+			for (int i = 0; i < heap.size(); i++) {
 				int thisElement = heap.get(i).getElem();
-				if(thisElement > highestCurrentElement){
+				if (thisElement > highestCurrentElement) {
 					highestCurrentElement = thisElement;
 				}
 			}
@@ -223,21 +223,22 @@ public class PriorityQueue {
 		int currentIndex = start_index;
 		boolean swapped = false;
 		do {
-			//check this elements parent
-			//ask if out current pair is less than the priority of the parent
-			//if so our new indes becomes our parent index.
+			// check this elements parent
+			// ask if out current pair is less than the priority of the parent
+			// if so our new indes becomes our parent index.
 			int parentIndex = parent(currentIndex);
 			Pair currentParent = heap.get(parentIndex);
 			int currentParentPriority = (int) currentParent.getPriority();
-			//want to swap this element with its parent if it has a lower priority
-			System.out.println("pair to perc priority: " + pairToPercPriority + " parentPriortiy: " + currentParentPriority);
-			if(pairToPercPriority < currentParentPriority){
+			// want to swap this element with its parent if it has a lower priority
+			System.out.println(
+					"pair to perc priority: " + pairToPercPriority + " parentPriortiy: " + currentParentPriority);
+			if (pairToPercPriority < currentParentPriority) {
 				currentIndex = parentIndex;
 				swapped = true;
-			}else{
+			} else {
 				swapped = false;
 			}
-		}while(swapped);
+		} while (swapped);
 		return currentIndex;
 	}
 
@@ -250,14 +251,15 @@ public class PriorityQueue {
 	 */
 	private void swap(int i, int j) {
 		// TODO: Fill in
-		//swap the heap
+		// swap the heap
 		Pair firstPair = heap.get(i);
 		Pair secondPair = heap.get(j);
 		Pair middleMan = firstPair;
 		firstPair = secondPair;
 		secondPair = middleMan;
-		//swap the hashmap
-		//this is done by just switching the values and leaving the pairs where they are in the hashmap
+		// swap the hashmap
+		// this is done by just switching the values and leaving the pairs where they
+		// are in the hashmap
 		int firstElement = heap.get(i).getElem();
 		int firstPriority = heap.get(i).getPriority();
 		int secondElement = heap.get(j).getElem();
@@ -273,8 +275,7 @@ public class PriorityQueue {
 	 * @return index of element's left child in list
 	 */
 	private int left(int parent) {
-		int left = location.getValue(parent);
-		return 0;
+		return (parent * 2) + 1;
 
 	}
 
@@ -285,8 +286,7 @@ public class PriorityQueue {
 	 * @return index of element's right child in list
 	 */
 	private int right(int parent) {
-		// TODO: Fill in
-		return 0;
+		return (parent * 2) + 2;
 	}
 
 	/**
