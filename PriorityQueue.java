@@ -219,8 +219,9 @@ public class PriorityQueue {
 	 * @return index of element's left child in list
 	 */
 	private int left(int parent) {
-		// TODO: Fill in
+		int left = location.getValue(parent);
 		return 0;
+
 	}
 
 	/**
