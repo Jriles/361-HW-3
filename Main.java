@@ -7,14 +7,18 @@ public class Main {
     public static void main(String[] args) {
 
         PriorityQueue pairs = new PriorityQueue();
-        pairs.push(0, 3);
-        pairs.push(2, 1);
-        pairs.push(3, 4);
-        pairs.push(9, 1);
+        pairs.push(0, 2);
+        pairs.push(1, 1);
 
-        System.out.println(pairs.heap.size());
-        pairs.pop();
-        System.out.println(pairs.heap.size());
+        System.out.println("SIZE: " + pairs.size());
+        System.out.println("Top Element: " + pairs.topElement());
+        pairs.printHeap();
+        System.out.println("Map");
+        pairs.printMap();
+
+        pairs.swap(0, 1);
+        pairs.printHeap();
+        pairs.printMap();
         // System.out.println("Before: ");
         // for (int j = 0; j < priorityQueue.heap.size(); j++) {
         // System.out.println("index: " + j + ", element: " +
