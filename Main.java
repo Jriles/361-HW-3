@@ -9,14 +9,16 @@ public class Main {
         PriorityQueue pairs = new PriorityQueue();
         pairs.push(0, 2);
         pairs.push(1, 1);
-
+        pairs.push(2, 3);
+        pairs.push(3, 9);
+        pairs.push(4, 8);
+        //pairs.push(5, 9);
         System.out.println("SIZE: " + pairs.size());
         System.out.println("Top Element: " + pairs.topElement());
         pairs.printHeap();
         System.out.println("Map");
         pairs.printMap();
-
-        pairs.swap(0, 1);
+        pairs.pop();
         pairs.printHeap();
         pairs.printMap();
         // System.out.println("Before: ");

@@ -58,14 +58,25 @@ public class PriorityQueue {
 	 * </ul>
 	 * 
 	 */
+
 	public void pop() {
-		// TODO: Fill in
-		int topPriority = topPriority();
-		int associatedElement = location.get(topPriority);
-		System.out.println("top priority: " + topPriority + " associated element: " + associatedElement);
-		location.remove(topPriority);
-		Pair<Integer, Integer> p = Pair.createPair(topPriority, associatedElement);
-		System.out.println(heap.remove(p));
+		//need to run an exhaustive search for the highest priority element
+		//once we have
+
+		//need rightmost element first
+		//while we have a child
+		//if we ahve a right child pick that
+		//move on to its child
+		int currentMaximum = 0;
+
+		for (int i = 0; i < heap.size(); ++i) {
+			if((int) heap.get(i).getPriority() > currentMaximum){
+				currentMaximum = (int) heap.get(i).getPriority();
+			}
+		}
+		System.out.println("current maximum: " + currentMaximum);
+		//swap current maximum with root
+		
 	}
 
 	/**
@@ -310,10 +321,11 @@ public class PriorityQueue {
 	 * 
 	 * @return the index in the list where the element is finally stored
 	 */
+	/*
 	private int pushDownRoot() {
 		// TODO: A one-line function that calls pushDown()
 	}
-
+	*/
 	/**
 	 * Percolate up the last leaf in the heap, i.e. the most recently added element
 	 * which is stored in the last slot in the list
@@ -322,6 +334,7 @@ public class PriorityQueue {
 	 */
 	private int percolateUpLeaf() {
 		// TODO: A one-line function that calls percolateUp()
+		return 0;
 	}
 
 	/**
@@ -330,13 +343,14 @@ public class PriorityQueue {
 	 * @param i index of element in heap
 	 * @return true if element is a leaf
 	 */
+	/*
 	private boolean isLeaf(int i) {
 		if (i >= (size / 2) && i <= size) {
 			return true;
 		}
 		return false;
 	}
-
+	*/
 	/**
 	 * Returns true if element has two children in the heap
 	 * 
@@ -345,6 +359,7 @@ public class PriorityQueue {
 	 */
 	private boolean hasTwoChildren(int i) {
 		// TODO: Fill in
+		return false;
 	}
 
 	/**
