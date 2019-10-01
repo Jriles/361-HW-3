@@ -6,15 +6,16 @@ import java.util.Map;
 /**
  * A priority queue class implemented using a min heap. Priorities cannot be
  * negative.
- * 
- * @author Your names
- * @version Date
+ *
+ * @author Jiman Kim and Jack Riley
+ * @version 20190930
  *
  */
 public class PriorityQueue {
 
 	protected Map<Integer, Integer> location;
 	protected List<Pair<Integer, Integer>> heap;
+	protected int size;
 
 	/**
 	 * Constructs an empty priority queue
@@ -22,6 +23,7 @@ public class PriorityQueue {
 	public PriorityQueue() {
 		heap = new ArrayList<Pair<Integer, Integer>>();
 		location = new HashMap<>();
+		this.size = heap.size();
 	}
 
 	/**
@@ -36,15 +38,17 @@ public class PriorityQueue {
 	 *                 queue.</li>
 	 *                 <li>The priority is non-negative.</li>
 	 *                 </ul>
-	 * 
+	 *
 	 */
 	public void push(int priority, int element) {
-		if (location.containsKey(element)) {
+		if (isPresent(element)) {
 			throw new AssertionError();
 		} else {
 			Pair<Integer, Integer> p = Pair.createPair(priority, element);
 			heap.add(p);
 			location.put(element, heap.indexOf(p));
+			percolateUp(heap.indexOf(p));
+
 		}
 
 	}
@@ -56,7 +60,7 @@ public class PriorityQueue {
 	 * <ul>
 	 * <li>The priority queue is non-empty.</li>
 	 * </ul>
-	 * 
+	 *
 	 */
 
 	public void pop() {
@@ -67,21 +71,25 @@ public class PriorityQueue {
 		//while we have a child
 		//if we ahve a right child pick that
 		//move on to its child
-		int currentMaximum = 0;
-
+		int currentMaximumIndex = 0;
+		int currentMaxPriority = 0;
 		for (int i = 0; i < heap.size(); ++i) {
-			if((int) heap.get(i).getPriority() > currentMaximum){
-				currentMaximum = (int) heap.get(i).getPriority();
+			if((int) heap.get(i).getPriority() > currentMaxPriority){
+				currentMaximumIndex = i;
+				currentMaxPriority =(int) heap.get(i).getPriority();
 			}
 		}
-		System.out.println("current maximum: " + currentMaximum);
+		System.out.println("current maximum: " + currentMaximumIndex);
 		//swap current maximum with root
-		
+		Pair pairToRemove = heap.get(currentMaximumIndex);
+		heap.remove(pairToRemove);
+		location.remove(pairToRemove.getElem());
+		heapify(0);
 	}
 
 	/**
 	 * Returns the highest priority in the queue
-	 * 
+	 *
 	 * @return highest priority value <br>
 	 *         <br>
 	 *         <b>Preconditions:</b>
@@ -107,7 +115,7 @@ public class PriorityQueue {
 
 	/**
 	 * Returns the element with the highest priority
-	 * 
+	 *
 	 * @return element with highest priority <br>
 	 *         <br>
 	 *         <b>Preconditions:</b>
@@ -133,7 +141,7 @@ public class PriorityQueue {
 
 	/**
 	 * Change the priority of an element already in the priority queue.
-	 * 
+	 *
 	 * @param newpriority the new priority
 	 * @param element     element whose priority is to be changed <br>
 	 *                    <br>
@@ -150,7 +158,7 @@ public class PriorityQueue {
 
 	/**
 	 * Gets the priority of the element
-	 * 
+	 *
 	 * @param element the element whose priority is returned
 	 * @return the priority value <br>
 	 *         <br>
@@ -160,13 +168,16 @@ public class PriorityQueue {
 	 *         </ul>
 	 */
 	public int getPriority(int element) {
-		// TODO: Fill in
-		return 0;
+		if (isPresent(element)) {
+			return (int) heap.get((int) location.get(element)).getPriority();
+		}
+		throw new AssertionError();
+
 	}
 
 	/**
 	 * Returns true if the priority queue contains no elements
-	 * 
+	 *
 	 * @return true if the queue contains no elements, false otherwise
 	 */
 	public boolean isEmpty() {
@@ -180,12 +191,11 @@ public class PriorityQueue {
 
 	/**
 	 * Returns true if the element exists in the priority queue.
-	 * 
+	 *
 	 * @return true if the element exists, false otherwise
 	 */
 	public boolean isPresent(int element) {
-		// TODO: Fill in
-		return true;
+		return location.containsKey(element);
 	}
 
 	/**
@@ -199,20 +209,38 @@ public class PriorityQueue {
 
 	/**
 	 * Returns the number of elements in the priority queue
-	 * 
+	 *
 	 * @return number of elements in the priority queue
 	 */
 	public int size() {
-		return heap.size();
+		size = heap.size();
+		return size;
 	}
 
 	/*********************************************************
 	 * Private helper methods
 	 *********************************************************/
 
+	public void heapify(int root) {
+		int parent = (int) heap.get(root).getPriority();
+		int left = (int) heap.get(left(root)).getPriority();
+		int right = (int) heap.get(right(root)).getPriority();
+		if (!isLeaf(root)) {
+			if (parent > right || parent > left) {
+				if (right < left) {
+					swap(root, right(root));
+					heapify(right(root));
+				} else {
+					swap(root, left(root));
+					heapify(left(root));
+				}
+			}
+		}
+	}
+
 	/**
 	 * Push down the element at the given position in the heap
-	 * 
+	 *
 	 * @param start_index the index of the element to be pushed down
 	 * @return the index in the list where the element is finally stored
 	 */
@@ -223,43 +251,32 @@ public class PriorityQueue {
 
 	/**
 	 * Percolate up the element at the given position in the heap
-	 * 
+	 *
 	 * @param start_index the index of the element to be percolated up
 	 * @return the index in the list where the element is finally stored
 	 */
 	private int percolateUp(int start_index) {
-		Pair pairToPerc = heap.get(start_index);
-		int pairToPercPriority = (int) pairToPerc.getPriority();
-		int currentIndex = start_index;
-		boolean swapped = false;
-		do {
-			// check this elements parent
-			// ask if out current pair is less than the priority of the parent
-			// if so our new indes becomes our parent index.
-			int parentIndex = parent(currentIndex);
-			Pair currentParent = heap.get(parentIndex);
-			int currentParentPriority = (int) currentParent.getPriority();
-			// want to swap this element with its parent if it has a lower priority
-			System.out.println(
-					"pair to perc priority: " + pairToPercPriority + " parentPriortiy: " + currentParentPriority);
-			if (pairToPercPriority < currentParentPriority) {
-				currentIndex = parentIndex;
-				swapped = true;
+		while (isLeaf(start_index)) {
+			int currentPriority = (int) heap.get(start_index).getPriority();
+			int parent = (int) heap.get(parent(start_index)).getPriority();
+			if (currentPriority < parent) {
+				swap(start_index, parent(start_index));
+				start_index = parent(start_index);
 			} else {
-				swapped = false;
+				return start_index;
 			}
-		} while (swapped);
-		return currentIndex;
+		}
+		return start_index;
 	}
 
 	/**
 	 * Swaps two elements in the priority queue by updating BOTH the list
 	 * representing the heap AND the map
-	 * 
+	 *
 	 * @param i The index of the element to be swapped
 	 * @param j The index of the element to be swapped
 	 */
-	public void swap(int i, int j) {
+	private void swap(int i, int j) {
 		// TODO: Fill in
 		// swap the heap
 		Pair temp = heap.get(i);
@@ -272,7 +289,6 @@ public class PriorityQueue {
 		// swap the hashmap
 		// this is done by just switching the values and leaving the pairs where they
 		// are in the hashmap
-
 		location.replace((int) secondPair.getElem(), j);
 		location.replace((int) firstPair.getElem(), i);
 
@@ -280,10 +296,10 @@ public class PriorityQueue {
 
 	/**
 	 * Computes the index of the element's left child
-	 * 
-	 * 
+	 *
+	 *
 	 * * @param parent index of element in list
-	 * 
+	 *
 	 * * @return index of element's left child in list
 	 */
 	private int left(int parent) {
@@ -293,7 +309,7 @@ public class PriorityQueue {
 
 	/**
 	 * Computes the index of the element's right child
-	 * 
+	 *
 	 * @param parent index of element in list
 	 * @return index of element's right child in list
 	 */
@@ -303,7 +319,7 @@ public class PriorityQueue {
 
 	/**
 	 * Computes the index of the element's parent
-	 * 
+	 *
 	 * @param child index of element in list
 	 * @return index of element's parent in list
 	 */
@@ -318,7 +334,7 @@ public class PriorityQueue {
 
 	/**
 	 * Push down the root element
-	 * 
+	 *
 	 * @return the index in the list where the element is finally stored
 	 */
 	/*
@@ -329,7 +345,7 @@ public class PriorityQueue {
 	/**
 	 * Percolate up the last leaf in the heap, i.e. the most recently added element
 	 * which is stored in the last slot in the list
-	 * 
+	 *
 	 * @return the index in the list where the element is finally stored
 	 */
 	private int percolateUpLeaf() {
@@ -339,21 +355,21 @@ public class PriorityQueue {
 
 	/**
 	 * Returns true if element is a leaf in the heap
-	 * 
+	 *
 	 * @param i index of element in heap
 	 * @return true if element is a leaf
 	 */
-	/*
+
 	private boolean isLeaf(int i) {
-		if (i >= (size / 2) && i <= size) {
+		if (i >= (size() / 2) && i <= size()) {
 			return true;
 		}
 		return false;
 	}
-	*/
+	
 	/**
 	 * Returns true if element has two children in the heap
-	 * 
+	 *
 	 * @param i index of element in the heap
 	 * @return true if element in heap has two children
 	 */
