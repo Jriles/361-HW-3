@@ -48,9 +48,7 @@ public class PriorityQueue {
 			heap.add(p);
 			location.put(element, heap.indexOf(p));
 			percolateUp(heap.indexOf(p));
-
 		}
-
 	}
 
 	/**
@@ -68,9 +66,6 @@ public class PriorityQueue {
 			return;
 		}
 		//need to run an exhaustive search for the highest priority element
-		//once we have
-		//if we ahve a right child pick that
-		//move on to its child
 		int currentMaximumIndex = 0;
 		int currentMaxPriority = 0;
 		for (int i = 0; i < heap.size(); ++i) {
@@ -152,6 +147,7 @@ public class PriorityQueue {
 	 */
 	public void changePriority(int newpriority, int element) {
 		// TODO: Fill in
+		//preconditions
 		if(newpriority < 0){
 			return;
 		}
@@ -160,13 +156,12 @@ public class PriorityQueue {
 		}
 		//change the priority of an element already in the priority queue
 		//this step is actually fairly simple
-		//and we need to move it up or down the tree accordingly
+		//and then reheapify
 		int index = location.get(element);
 		Pair pairToAlter = heap.get(index);
 		pairToAlter.setPriority(newpriority);
 		System.out.println((int) pairToAlter.getPriority());
-		//heapify(index);
-		pushDown(0);
+		heapify(index);
 	}
 
 
@@ -235,10 +230,11 @@ public class PriorityQueue {
 	/*********************************************************
 	 * Private helper methods
 	 *********************************************************/
-
+	//heapify resests the tree
 	public void heapify(int root) {
 		int parent = (int) heap.get(root).getPriority();
 		int left;
+		//need to check if we are still inbounds
 		if(left(root) < heap.size()) {
 			left = (int) heap.get(left(root)).getPriority();
 		}else{
@@ -272,7 +268,6 @@ public class PriorityQueue {
 
 	public int pushDown(int start_index) {
 		// TODO: Fill in
-		//there exist any children
 		Pair pairToPushDown = heap.get(start_index);
 		Pair leftChild = null;
 		Pair rightChild = null;
@@ -287,8 +282,10 @@ public class PriorityQueue {
 		}
 		while(leftChild != null || rightChild != null){
 			//only three possible cases
-			//either there are no nodes
-			//but that can happen at this point thanks to the while which leaves us the with the possibilities of one node or two
+			//there are two children
+			//or there is only a left child node
+			//or there are no child nodes
+			//but that can't happen at this point thanks to the while condition which leaves us the with the possibilities of one node or two
 
 			//if right one is missing just take left one and try to repeat.
 			//if the right child is missing jsut go with the left
@@ -311,7 +308,7 @@ public class PriorityQueue {
 				}
 			}else {
 				//else do this
-				//if left child is smaller than its neighbor and smaller than you then swap and reset variables.
+				//if left child is smaller than its neighbor and smaller than the element to push down then we swap and set new children.
 				if (((int) leftChild.getPriority() < (int) rightChild.getPriority()) && ((int) leftChild.getPriority() < (int) pairToPushDown.getPriority())) {
 					swap(currentIndex, leftChildIndex);
 					currentIndex = leftChildIndex;
@@ -328,7 +325,7 @@ public class PriorityQueue {
 					}else{
 						rightChild = null;
 					}
-					//if right child is smaller than irs neighbor
+					//if right child is smaller than its neighbor and smaller than the element to push down then we swap and set new children.
 				} else if((int) leftChild.getPriority() > (int) rightChild.getPriority() && ((int) rightChild.getPriority() < (int) pairToPushDown.getPriority())){
 					swap(currentIndex, rightChildIndex);
 					currentIndex = rightChildIndex;
@@ -346,7 +343,7 @@ public class PriorityQueue {
 						rightChild = null;
 					}
 				}else{
-					//neither child is ready, nothing occurs and we exit the while.
+					//neither child is ready, meaning we are at the end of the line, nothing occurs and we exit the while.
 					leftChild = null;
 					rightChild = null;
 				}
