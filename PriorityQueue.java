@@ -152,7 +152,12 @@ public class PriorityQueue {
 	 */
 	public void changePriority(int newpriority, int element) {
 		// TODO: Fill in
-
+		if(newpriority < 0){
+			return;
+		}
+		if(isPresent(element) == false){
+			return;
+		}
 		//change the priority of an element already in the priority queue
 		//this step is actually fairly simple
 		//and we need to move it up or down the tree accordingly
@@ -306,7 +311,7 @@ public class PriorityQueue {
 				}
 			}else {
 				//else do this
-				//if left child is bigger than its neighbor and smaller than you then swap and reset variables.
+				//if left child is smaller than its neighbor and smaller than you then swap and reset variables.
 				if (((int) leftChild.getPriority() < (int) rightChild.getPriority()) && ((int) leftChild.getPriority() < (int) pairToPushDown.getPriority())) {
 					swap(currentIndex, leftChildIndex);
 					currentIndex = leftChildIndex;
@@ -323,6 +328,7 @@ public class PriorityQueue {
 					}else{
 						rightChild = null;
 					}
+					//if right child is smaller than irs neighbor
 				} else if((int) leftChild.getPriority() > (int) rightChild.getPriority() && ((int) rightChild.getPriority() < (int) pairToPushDown.getPriority())){
 					swap(currentIndex, rightChildIndex);
 					currentIndex = rightChildIndex;
