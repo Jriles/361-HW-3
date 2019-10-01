@@ -231,7 +231,7 @@ public class PriorityQueue {
 	 * Private helper methods
 	 *********************************************************/
 	//heapify resests the tree
-	public void heapify(int root) {
+	private void heapify(int root) {
 		int parent = (int) heap.get(root).getPriority();
 		int left;
 		//need to check if we are still inbounds
@@ -266,7 +266,7 @@ public class PriorityQueue {
 	 * @return the index in the list where the element is finally stored
 	 */
 
-	public int pushDown(int start_index) {
+	private int pushDown(int start_index) {
 		// TODO: Fill in
 		Pair pairToPushDown = heap.get(start_index);
 		Pair leftChild = null;
@@ -482,7 +482,7 @@ n 	 * @param start_index the index of the element to be percolated up
 	/**
 	 * print the underlying list representation
 	 */
-	public void printHeap() {
+	private void printHeap() {
 		System.out.print("[");
 		for (Pair p : heap) {
 			System.out.print(p.toString());
@@ -494,7 +494,7 @@ n 	 * @param start_index the index of the element to be percolated up
 	/**
 	 * Print the entries in the location map
 	 */
-	public void printMap() {
+	private void printMap() {
 		location.forEach((key, value) -> System.out.println("Element: " + key + " " + " Index: " + value));
 
 	}
