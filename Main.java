@@ -11,7 +11,5 @@ public class Main {
         pairs.push(2, 3);
         pairs.push(1, 6);
         pairs.push(6, 1);
-        pairs.printHeap();
-
     }
 }
