@@ -41,7 +41,7 @@ public class PriorityQueue {
 	 *
 	 */
 	public void push(int priority, int element) {
-		if (isPresent(element)) {
+		if (isPresent(element) || priority < 0) {
 			throw new AssertionError();
 		} else {
 			Pair<Integer, Integer> p = Pair.createPair(priority, element);
@@ -97,7 +97,7 @@ public class PriorityQueue {
 	 *         </ul>
 	 */
 	public int topPriority() {
-		// TODO: Fill in
+		// Returns error once
 		if (isEmpty()) {
 			return -1;
 		} else {
