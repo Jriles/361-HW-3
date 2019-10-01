@@ -64,11 +64,11 @@ public class PriorityQueue {
 	 */
 
 	public void pop() {
+		if(isEmpty()){
+			return;
+		}
 		//need to run an exhaustive search for the highest priority element
 		//once we have
-
-		//need rightmost element first
-		//while we have a child
 		//if we ahve a right child pick that
 		//move on to its child
 		int currentMaximumIndex = 0;
@@ -79,8 +79,7 @@ public class PriorityQueue {
 				currentMaxPriority =(int) heap.get(i).getPriority();
 			}
 		}
-		System.out.println("current maximum: " + currentMaximumIndex);
-		//swap current maximum with root
+		//remove largest element and reheapify.
 		Pair pairToRemove = heap.get(currentMaximumIndex);
 		heap.remove(pairToRemove);
 		location.remove(pairToRemove.getElem());
@@ -154,7 +153,18 @@ public class PriorityQueue {
 	public void changePriority(int newpriority, int element) {
 		// TODO: Fill in
 
+		//change the priority of an element already in the priority queue
+		//this step is actually fairly simple
+		//and we need to move it up or down the tree accordingly
+		int index = location.get(element);
+		Pair pairToAlter = heap.get(index);
+		pairToAlter.setPriority(newpriority);
+		System.out.println((int) pairToAlter.getPriority());
+		//heapify(index);
+		pushDown(0);
 	}
+
+
 
 	/**
 	 * Gets the priority of the element
@@ -223,9 +233,19 @@ public class PriorityQueue {
 
 	public void heapify(int root) {
 		int parent = (int) heap.get(root).getPriority();
-		int left = (int) heap.get(left(root)).getPriority();
-		int right = (int) heap.get(right(root)).getPriority();
-		if (!isLeaf(root)) {
+		int left;
+		if(left(root) < heap.size()) {
+			left = (int) heap.get(left(root)).getPriority();
+		}else{
+			left = -1;
+		}
+		int right;
+		if(right(root) < heap.size()) {
+			right = (int) heap.get(right(root)).getPriority();
+		}else{
+			right = -1;
+		}
+		if (!isLeaf(root) && left != -1 && right != -1) {
 			if (parent > right || parent > left) {
 				if (right < left) {
 					swap(root, right(root));
@@ -244,15 +264,93 @@ public class PriorityQueue {
 	 * @param start_index the index of the element to be pushed down
 	 * @return the index in the list where the element is finally stored
 	 */
-	private int pushDown(int start_index) {
-		// TODO: Fill in
-		return 0;
-	}
 
-	/**
-	 * Percolate up the element at the given position in the heap
-	 *
-	 * @param start_index the index of the element to be percolated up
+	public int pushDown(int start_index) {
+		// TODO: Fill in
+		//there exist any children
+		Pair pairToPushDown = heap.get(start_index);
+		Pair leftChild = null;
+		Pair rightChild = null;
+		int currentIndex = start_index;
+		int leftChildIndex = 2 * start_index + 1;
+		int rightChildIndex = 2 * start_index + 2;
+		if(leftChildIndex < heap.size()){
+			leftChild = heap.get(leftChildIndex);
+		}
+		if(((2 * start_index) + 2) < heap.size()){
+			rightChild = heap.get(rightChildIndex);
+		}
+		while(leftChild != null || rightChild != null){
+			//only three possible cases
+			//either there are no nodes
+			//but that can happen at this point thanks to the while which leaves us the with the possibilities of one node or two
+
+			//if right one is missing just take left one and try to repeat.
+			//if the right child is missing jsut go with the left
+			//want to make sure our pair to push down has a hgih priority tho
+			if(rightChild == null && ((int) leftChild.getPriority() < (int) pairToPushDown.getPriority())){
+				pairToPushDown = heap.get(leftChildIndex);
+				swap(leftChildIndex, currentIndex);
+				currentIndex = leftChildIndex;
+				if(heap.size() > (2 * currentIndex) + 1) {
+					leftChildIndex = (2 * leftChildIndex) + 1;
+					leftChild = heap.get(leftChildIndex);
+				}else{
+					leftChild = null;
+				}
+				if(heap.size() > (2 * currentIndex) + 2){
+					rightChildIndex = (2 * currentIndex) + 2;
+					rightChild = heap.get(rightChildIndex);
+				}else{
+					rightChild = null;
+				}
+			}else {
+				//else do this
+				//if left child is bigger than its neighbor and smaller than you then swap and reset variables.
+				if (((int) leftChild.getPriority() < (int) rightChild.getPriority()) && ((int) leftChild.getPriority() < (int) pairToPushDown.getPriority())) {
+					swap(currentIndex, leftChildIndex);
+					currentIndex = leftChildIndex;
+					pairToPushDown = heap.get(currentIndex);
+					if(heap.size() > (2 * currentIndex) + 1) {
+						leftChildIndex = (2 * currentIndex) + 1;
+						leftChild = heap.get(leftChildIndex);
+					}else {
+						leftChild = null;
+					}
+					if(heap.size() > (2 * currentIndex) + 2){
+						rightChildIndex = (2 * currentIndex) + 2;
+						rightChild = heap.get(rightChildIndex);
+					}else{
+						rightChild = null;
+					}
+				} else if((int) leftChild.getPriority() > (int) rightChild.getPriority() && ((int) rightChild.getPriority() < (int) pairToPushDown.getPriority())){
+					swap(currentIndex, rightChildIndex);
+					currentIndex = rightChildIndex;
+					pairToPushDown = heap.get(currentIndex);
+					if(heap.size() > (2 * currentIndex) + 1) {
+						leftChildIndex = (2 * currentIndex) + 1;
+						leftChild = heap.get(leftChildIndex);
+					}else {
+						leftChild = null;
+					}
+					if(heap.size() > (2 * currentIndex) + 2){
+						rightChildIndex = (2 * currentIndex) + 2;
+						rightChild = heap.get(rightChildIndex);
+					}else{
+						rightChild = null;
+					}
+				}else{
+					//neither child is ready, nothing occurs and we exit the while.
+					leftChild = null;
+					rightChild = null;
+				}
+
+			}
+		}
+		return currentIndex;
+	}
+	/*
+n 	 * @param start_index the index of the element to be percolated up
 	 * @return the index in the list where the element is finally stored
 	 */
 	private int percolateUp(int start_index) {
